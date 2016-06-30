@@ -1,0 +1,17 @@
+{
+  "name": "kindred-shader-formatter",
+  "version": "1.0.0",
+  "dependencies": {
+    "glsl-token-function-shaker": "^1.0.0",
+    "glsl-token-functions": "^1.0.0",
+    "glsl-token-string": "^1.0.1",
+    "glsl-tokenizer": "^2.1.2"
+  },
+  "devDependencies": {
+    "gl": "^4.0.2",
+    "gl-shader": "^4.2.0",
+    "glsl-aastep": "^1.0.1",
+    "glslify": "^5.1.0",
+    "tape": "^4.6.0"
+  }
+}
