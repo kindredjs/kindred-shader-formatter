@@ -1,6 +1,20 @@
-module.exports = createPrefix
+var inject = require('glsl-token-inject-block')
+var stringify = require('glsl-token-string')
+var tokenize = require('glsl-tokenizer')
 
-function createPrefix (params) {
+module.exports = applyPrefixToShader
+module.exports.source = createPrefixSource
+
+function applyPrefixToShader (source, params) {
+  var tokens = tokenize(source)
+  var prefix = typeof params !== 'string'
+    ? createPrefixSource(params)
+    : params
+
+  return stringify(inject(tokens, tokenize(prefix)))
+}
+
+function createPrefixSource (params) {
   if (!params) return ''
 
   var values = []
@@ -38,9 +52,7 @@ function createPrefix (params) {
     throw new Error('Unable to handle shader parameter "' + key + '": must be either a number or array of 1-4 values')
   }
 
-  return values.length
-    ? values.join('\n') + '\n\n'
-    : ''
+  return values.join('\n')
 }
 
 function toFloat (num) {

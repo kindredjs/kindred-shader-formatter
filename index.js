@@ -1,18 +1,17 @@
-var removeAttributes = require('./remove-attributes')
-var includePrecision = require('./include-precision')
-var removeFunction = require('./remove-function')
-var removeUnused = require('./remove-unused')
-var createPrefix = require('./prefix')
+var applyPrefix = require('./prefix')
+var convertVert = require('./vert')
+var convertFrag = require('./frag')
 
-exports.vert = require('./vert')
-exports.frag = require('./frag')
-exports.prefix = require('./prefix')
+module.exports = format
+module.exports.vert = convertVert
+module.exports.frag = convertFrag
+module.exports.prefix = applyPrefix
 
-function convert (src, params) {
-  var prefix = createPrefix(params)
+function format (src, params) {
+  var prefix = applyPrefix.source(params)
 
   return {
-    vert: prefix + isolateVert(src),
-    frag: prefix + isolateFrag(src)
+    vert: applyPrefix(convertVert(src), prefix),
+    frag: applyPrefix(convertFrag(src), prefix)
   }
 }

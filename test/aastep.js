@@ -29,7 +29,7 @@ void vert() {
 
 void frag() {
   float flag = aastep(vNormal.x, 0.0);
-  gl_FragColor = vec4(vNormal * 0.5 + 0.5, flag);
+  gl_FragColor = vec4(vNormal * 0.5 + 0.5, flag * FLAG_MULT);
 }
 `.trim()
 
@@ -40,11 +40,12 @@ test('kindred-shader-formatter: aastep', function (t) {
   glslify.bundle(src, { inline: true }, function (err, result) {
     if (err) return t.ifError(err)
 
-    var formatted = {
-      vert: format.vert(result),
-      frag: format.frag(result)
-    }
+    var formatted = format(result, {
+      FLAG_MULT: [2]
+    })
 
+    t.ok(formatted.vert.indexOf('FLAG_MULT 2.0') !== -1, 'prefix was applied to vert')
+    t.ok(formatted.frag.indexOf('FLAG_MULT 2.0') !== -1, 'prefix was applied to frag')
     t.ok(formatted.vert.indexOf('aastep') === -1, 'vertex shader is excluding aastep')
     t.ok(formatted.frag.indexOf('aastep') !== -1, 'fragment shader contains aastep')
     t.doesNotThrow(function () {
