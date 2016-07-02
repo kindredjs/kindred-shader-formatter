@@ -27,9 +27,10 @@ function createPrefix (params) {
     if (Array.isArray(value)) {
       if (value.length === 1) {
         values.push('#define ' + key + ' ' + toFloat(value[0]))
+        continue
       }
       if (value.length >= 2 && value.length <= 4) {
-        values.push('#define ' + key + ' ' + 'vec' + value.length + '(' + value.join(',') + ')')
+        values.push('#define ' + key + ' ' + 'vec' + value.length + '(' + value.map(toFloat).join(', ') + ')')
         continue
       }
     }
@@ -37,7 +38,9 @@ function createPrefix (params) {
     throw new Error('Unable to handle shader parameter "' + key + '": must be either a number or array of 1-4 values')
   }
 
-  return values.join('\n') + '\n\n'
+  return values.length
+    ? values.join('\n') + '\n\n'
+    : ''
 }
 
 function toFloat (num) {
