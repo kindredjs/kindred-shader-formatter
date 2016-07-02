@@ -40,17 +40,16 @@ test('kindred-shader-formatter: aastep', function (t) {
   glslify.bundle(src, { inline: true }, function (err, result) {
     if (err) return t.ifError(err)
 
-    var formatted = format(result)
+    var formatted = {
+      vert: format.vert(result),
+      frag: format.frag(result)
+    }
 
     t.ok(formatted.vert.indexOf('aastep') === -1, 'vertex shader is excluding aastep')
     t.ok(formatted.frag.indexOf('aastep') !== -1, 'fragment shader contains aastep')
     t.doesNotThrow(function () {
       Shader(gl, formatted.vert, formatted.frag)
     }, 'shader compiles successfully')
-
-    console.error(formatted.vert)
-    console.error('============')
-    console.error(formatted.frag)
 
     gl.destroy()
 
