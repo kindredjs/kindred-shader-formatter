@@ -1,3 +1,5 @@
 machine:
+  pre:
+    - npm rebuild
   node:
-    version: 4.2.2
+    version: '4'
