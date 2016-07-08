@@ -1,5 +1,6 @@
 machine:
-  pre:
-    - npm rebuild
   node:
     version: '4'
+test:
+  pre:
+    - npm rebuild
