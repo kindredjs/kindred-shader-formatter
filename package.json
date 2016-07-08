@@ -1,18 +1,38 @@
 {
   "name": "kindred-shader-formatter",
   "version": "1.0.0",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kindredjs/kindred-shader-formatter"
+  },
+  "scripts": {
+    "test": "node test | tspec",
+    "bundle": "browserify demo.js -o demo-bundle.js",
+    "start": "budo demo.js:demo-bundle.js"
+  },
   "dependencies": {
     "glsl-token-function-shaker": "^1.0.0",
-    "glsl-token-functions": "^1.0.0",
-    "glsl-token-inject-block": "^1.1.0",
     "glsl-token-string": "^1.0.1",
     "glsl-tokenizer": "^2.1.2"
   },
   "devDependencies": {
+    "browserify": "^13.0.1",
+    "budo": "^8.3.0",
     "gl": "^4.0.2",
     "gl-shader": "^4.2.0",
     "glsl-aastep": "^1.0.1",
+    "glsl-editor": "^1.0.0",
     "glslify": "^5.1.0",
+    "tap-spec": "^4.1.1",
     "tape": "^4.6.0"
-  }
+  },
+  "tags": [
+    "ecosystem:kindred",
+    "kindred",
+    "shader",
+    "format",
+    "glsl",
+    "combined"
+  ]
 }

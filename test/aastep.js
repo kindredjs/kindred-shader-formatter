@@ -33,7 +33,6 @@ void frag() {
 }
 `.trim()
 
-
 test('kindred-shader-formatter: aastep', function (t) {
   const gl = GL(256, 256)
 

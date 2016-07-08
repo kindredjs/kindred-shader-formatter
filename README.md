@@ -1,5 +1,8 @@
 # kindred-shader-formatter
 
+![](https://img.shields.io/badge/stability-experimental-ffa100.svg?style=flat-square)
+![](https://img.shields.io/npm/v/kindred-shader-formatter.svg?style=flat-square)
+
 Simplify authoring GLSL shaders and reduce boilerplate with a few helpful adjustments.
 
 ## Usage
@@ -74,6 +77,27 @@ Under the hood, we're making a few changes to your shaders:
 
 ### `format(source)`
 
+Formats a combined shader source, returning an object with the vertex and fragment shaders as strings in `vert` and `frag` respectively.
+
+``` javascript
+const format = require('kindred-shader-formatter')
+const Shader = require('gl-shader')
+
+const src = format(`
+  // GLSL shader goes here
+`)
+
+const shader = Shader(gl, src.vert, src.frag)
+```
+
 ### `format.vert(source)`
 
+Extracts and returns only the vertex shader from `source`.
+
 ### `format.frag(source)`
+
+Extracts and returns only the fragment shader from `source`.
+
+## License
+
+MIT. See [LICENSE.md](LICENSE.md) for details.
