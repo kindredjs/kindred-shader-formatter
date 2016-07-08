@@ -8,6 +8,7 @@
   },
   "scripts": {
     "test": "node test | tspec",
+    "posttest": "standard",
     "bundle": "browserify demo.js -o demo-bundle.js",
     "start": "budo demo.js:demo-bundle.js"
   },
@@ -24,6 +25,7 @@
     "glsl-aastep": "^1.0.1",
     "glsl-editor": "^1.0.0",
     "glslify": "^5.1.0",
+    "standard": "^7.1.2",
     "tap-spec": "^4.1.1",
     "tape": "^4.6.0"
   },
